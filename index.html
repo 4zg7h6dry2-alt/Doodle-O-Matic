@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doodle-O-Matic</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button class="heartbox" id="heart" aria-label="About"><svg viewBox="0 0 9 8"><rect x="1" y="0" width="2" height="1"/><rect x="6" y="0" width="2" height="1"/><rect x="0" y="1" width="4" height="1"/><rect x="5" y="1" width="4" height="1"/><rect x="0" y="2" width="9" height="2"/><rect x="1" y="4" width="7" height="1"/><rect x="2" y="5" width="5" height="1"/><rect x="3" y="6" width="3" height="1"/><rect x="4" y="7" width="1" height="1"/></svg></button>
+<h1>DOODLE-O-MATIC</h1>
+<p class="sub">pull the lever. draw the nonsense.</p>
+
+<section id="s-main" class="on">
+  <div class="machine" id="cab">
+    <canvas id="cv" width="80" height="108"></canvas>
+    <div class="sign">DOODLE-O-MATIC</div>
+    <div class="win"><div class="strip"><div>?</div></div></div>
+    <div class="win"><div class="strip"><div>?</div></div></div>
+    <div class="win"><div class="strip"><div>?</div></div></div>
+    <div id="lever" style="position:absolute;left:77.5%;top:27%;width:13%;height:34%;cursor:pointer"></div>
+  </div>
+  <div class="label">TIMER?</div>
+  <div class="pills" id="pills">
+    <button class="pill" data-min="1">1 MIN</button>
+    <button class="pill sel" data-min="3">3 MIN</button>
+  </div>
+  <button id="pull">PULL THE LEVER</button>
+  <div id="result">
+    <div class="slip" id="slipText"></div>
+    <button id="start">START DOODLING</button>
+    <div>once you start, the timer won’t stop!</div>
+  </div>
+</section>
+
+<section id="s-timer">
+  <div class="ring" id="ring">
+    <canvas id="rcv" width="40" height="40" style="position:static;width:160px;height:160px;margin:5px"></canvas>
+    <div class="t" id="clock">3:00</div>
+  </div>
+  <div class="prompt-small" id="timerPrompt"></div>
+  <div>draw it. freestyle ;). keep going.</div>
+</section>
+
+<section id="s-done">
+  <div class="label">TIME’S UP</div>
+  <div class="slip" id="doneMsg"></div>
+  <button id="back">BACK TO THE MACHINE</button>
+</section>
+
+<dialog id="about">
+  <h2>MADE WITH LOVE</h2>
+  <div>from me, to you.</div>
+  <ol>
+    <li>Pick 1 or 3 minutes.</li>
+    <li>Pull the lever kronk!!.</li>
+    <li>Draw whatever comes out.</li>
+    <li>No pausing. No excuses.</li>
+  </ol>
+  <div>Find me on Instagram: <a href="https://instagram.com/witty.fig" target="_blank" rel="noopener">@witty.fig</a></div>
+  <div class="fine">© 2026 · All rights reserved</div>
+  <button id="closeAbout" autofocus>CLOSE</button>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
