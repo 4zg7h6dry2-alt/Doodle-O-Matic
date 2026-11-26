@@ -1,0 +1,72 @@
+:root{
+  --velvet:#240046; --amethyst:#5A189A; --gold:#FF9E00; --midnight:#10002B;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--midnight);color:var(--gold);
+  font-family:"VT323","Courier New",monospace;font-size:24px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;padding:20px 16px 90px;overflow-x:hidden}
+h1{font-family:"Press Start 2P","Courier New",monospace;font-size:16px;line-height:1.5;margin:6px 0 2px}
+.sub{margin:0 0 12px;font-size:22px}
+section{display:none;width:100%;max-width:340px;flex-direction:column;align-items:center;gap:14px}
+section.on{display:flex}
+.px{--s:8px;clip-path:polygon(var(--s) 0,calc(100% - var(--s)) 0,calc(100% - var(--s)) var(--s),100% var(--s),100% calc(100% - var(--s)),calc(100% - var(--s)) calc(100% - var(--s)),calc(100% - var(--s)) 100%,var(--s) 100%,var(--s) calc(100% - var(--s)),0 calc(100% - var(--s)),0 var(--s),var(--s) var(--s))}
+.machine{position:relative;width:min(320px,100%);aspect-ratio:80/108;container-type:inline-size;translate:8.125% 0}
+.machine.spin{animation:jig .12s steps(1) infinite}
+@keyframes jig{25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.sign{position:absolute;left:15%;top:11.1%;width:55%;height:5.6%;display:flex;align-items:center;justify-content:center;
+  font-family:"Press Start 2P","Courier New",monospace;font-size:3.1cqw;white-space:nowrap}
+.win{position:absolute;overflow:hidden}
+.win.flash{animation:fl .35s steps(1)}
+@keyframes fl{0%,60%{background:var(--amethyst)}}
+.strip div{height:16.25cqw;display:flex;align-items:center;justify-content:center;padding:0 2cqw;
+  font-size:6.6cqw;line-height:.95}
+.knob{position:absolute;left:78.75cqw;top:42.5cqw;width:10cqw;height:10cqw;--s:1.25cqw;background:var(--gold);cursor:pointer}
+.knob::after{content:"";position:absolute;inset:25%;background:var(--amethyst)}
+.stick{position:absolute;left:82.5cqw;top:50cqw;width:2.5cqw;height:22.5cqw;background:var(--gold);transform-origin:bottom;cursor:pointer}
+.lever.pull .knob{animation:kn .5s ease-in-out}
+.lever.pull .stick{animation:st .5s ease-in-out}
+@keyframes kn{50%{transform:translateY(13.5cqw)}}
+@keyframes st{50%{transform:scaleY(.4)}}
+.label{font-family:"Press Start 2P","Courier New",monospace;font-size:10px}
+.pills{display:flex;gap:10px}
+button{font-family:"Press Start 2P","Courier New",monospace;font-size:11px;line-height:1.5;
+  background:var(--gold);color:var(--midnight);border:0;padding:12px 14px;cursor:pointer;
+  box-shadow:4px 4px 0 var(--amethyst)}
+button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--amethyst)}
+button:disabled{opacity:.5;cursor:default}
+.pill{background:var(--velvet);color:var(--gold);box-shadow:none;border:2px solid var(--amethyst)}
+.pill.sel{background:var(--gold);color:var(--midnight);border-color:var(--gold)}
+.slip{background:var(--gold);color:var(--midnight);padding:12px;width:100%;
+  border:4px solid var(--velvet);box-shadow:4px 4px 0 var(--amethyst);
+  font-size:26px;line-height:1.05;animation:pop .55s cubic-bezier(.2,.9,.3,1.1) both}
+@keyframes pop{from{opacity:0;transform:translateY(-30px) scale(.4)}to{opacity:1;transform:none}}
+#result{display:none;flex-direction:column;align-items:center;gap:10px;width:100%}
+#result.on{display:flex}
+.ring{position:relative;width:170px;height:170px}
+.ring svg{transform:rotate(-90deg)}
+.ring .t{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:"Press Start 2P","Courier New",monospace;font-size:20px}
+.ring.low .t{animation:blink .5s steps(1) infinite}
+@keyframes blink{50%{opacity:.25}}
+.prompt-small{background:var(--velvet);border:2px solid var(--amethyst);padding:14px;width:100%;font-size:28px;line-height:1.1}
+.conf{position:fixed;top:-10px;width:8px;height:8px;animation:fall linear forwards;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.heartbox{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:54px;height:50px;padding:0;z-index:5;
+  background:var(--velvet);border:4px solid var(--gold);box-shadow:4px 4px 0 var(--amethyst);
+  transform:skew(-8deg) rotate(-3deg);display:flex;align-items:center;justify-content:center}
+.heartbox:active{transform:skew(-8deg) rotate(-3deg) translate(3px,3px);box-shadow:1px 1px 0 var(--amethyst)}
+.heartbox svg{width:30px;height:27px;fill:var(--gold);shape-rendering:crispEdges;transform:skew(8deg);animation:beat 1.4s ease-in-out infinite}
+@keyframes beat{0%,100%{scale:1}50%{scale:1.15}}
+dialog{background:var(--velvet);color:var(--gold);border:4px solid var(--gold);box-shadow:6px 6px 0 var(--amethyst);padding:18px 16px;width:calc(100vw - 40px);max-width:320px;font-family:"VT323","Courier New",monospace;font-size:22px;text-align:center}
+dialog[open]{animation:pop .45s cubic-bezier(.2,.9,.3,1.1) both}
+dialog::backdrop{background:rgba(16,0,43,.82)}
+dialog h2{font-family:"Press Start 2P","Courier New",monospace;font-size:12px;line-height:1.5;margin:0 0 10px}
+dialog ol{text-align:left;margin:8px 0 12px;padding-left:24px;line-height:1.1}
+dialog a{color:var(--gold)}
+dialog .fine{font-size:19px;margin:12px 0 14px}
+dialog *:focus,dialog:focus{outline:none}
